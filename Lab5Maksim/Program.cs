@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Lab5Maksim.Exercise;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +24,9 @@ namespace Lab5Maksim
                         run = false;
                         break;
                     case 1:
-
+                        Ex1 ex = new Ex1();
+                        ex.Exercise1(args);
+                        Console.ReadLine();
                         break;
                     case 2:
 
