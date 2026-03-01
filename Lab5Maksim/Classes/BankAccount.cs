@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab5Maksim.Classes
 {
-    class BankAccount
+   public class BankAccount
     {
         private long AccNo;
         private decimal AccBalance;
@@ -56,6 +56,11 @@ namespace Lab5Maksim.Classes
                 AccBalance -= amount;
             }
             return sufficientFunds;
+        }
+
+        public void TransferFrom(BankAccount accFrom, decimal amount)
+        {
+            if (accFrom.Withdraw(amount)) this.Deposit(amount);
         }
     }
 
