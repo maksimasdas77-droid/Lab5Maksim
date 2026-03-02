@@ -60,7 +60,14 @@ namespace Lab5Maksim.Classes
 
         public void TransferFrom(BankAccount accFrom, decimal amount)
         {
-            if (accFrom.Withdraw(amount)) this.Deposit(amount);
+            if (accFrom.Withdraw(amount))
+            {
+                this.Deposit(amount);
+            }
+            else 
+            {
+                Console.WriteLine("Не достаточно средств на счете-доноре");
+            }
         }
     }
 

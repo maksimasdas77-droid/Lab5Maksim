@@ -28,7 +28,7 @@ namespace Lab5Maksim
                 Console.WriteLine("2. Внести депозит на счет");
                 Console.WriteLine("3. Снять деньги со счета");
                 Console.WriteLine("4. Перевести деньги с одного счета на другой");
-                Console.WriteLine("5. Перевести деньги с одного счета на другой");
+                Console.WriteLine("5. вроде пункт не нужен, но на всякий случай оставлю");
                 int choice = ReadClass.ReadValueWithCondition<int>("Выберите пункт меню (0 - для выхода): ", int.TryParse, value => value >= 0 && value <= 5, "Не правильный пункт меню. Попробуйте снова: ");
                 switch (choice)
                 {
@@ -87,6 +87,26 @@ namespace Lab5Maksim
                         break;
                     case 4:
 
+                        
+                        Console.Write("1. ");
+                        Write(b1);
+                        Console.Write("2. ");
+                        Write(b2);
+                        int choice4 = ReadClass.ReadValueWithCondition<int>("Введите номер счета с которого вы перевести деньги на другой: ", int.TryParse, x => x >= 0 && x <= 2, "Нет такого счета. Попробуйте снова: ");
+                        int mount = ReadClass.ReadValue<int>("Введите сумму для переброски: ", int.TryParse);
+                        if (choice4 == 1)
+                        {
+                            b1.TransferFrom(b2, mount);
+                        }
+                        else if (choice4 == 2)
+                        {
+                            b2.TransferFrom(b1, mount); ;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        Console.ReadLine();
                         break;
                 }
             }
