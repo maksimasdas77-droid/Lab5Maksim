@@ -16,21 +16,95 @@ namespace Lab5Maksim
             Console.OutputEncoding = Encoding.UTF8;
             CultureInfo.CurrentCulture = new CultureInfo("ru-RU");
             CultureInfo.CurrentUICulture = new CultureInfo("ru-RU");
-            BankAccount Berts = NewBankAccount();
-            Write(Berts);
-            TestDeposit(Berts);
-            Write(Berts);
-            TestWithdraw(Berts);
-            Write(Berts);
+            //BankAccount Bank = NewBankAccount();
+            BankAccount b1 = NewBankAccount();
+            BankAccount b2 = NewBankAccount();
+            bool runing = true;
+            while (runing) 
+            {
+                Console.Clear();
+                Console.WriteLine("=====Меню=====");
+                Console.WriteLine("1. Просмотр счетов.");
+                Console.WriteLine("2. Внести депозит на счет");
+                Console.WriteLine("3. Снять деньги со счета");
+                Console.WriteLine("4. Перевести деньги с одного счета на другой");
+                Console.WriteLine("5. Перевести деньги с одного счета на другой");
+                int choice = ReadClass.ReadValueWithCondition<int>("Выберите пункт меню (0 - для выхода): ", int.TryParse, value => value >= 0 && value <= 5, "Не правильный пункт меню. Попробуйте снова: ");
+                switch (choice)
+                {
+                    case 0:
+                        Console.WriteLine("Выход из программы.");
+                        runing = false;
+                        Console.ReadLine();
+                        break;
 
-            BankAccount Freds = NewBankAccount();
-            Write(Freds);
-            TestDeposit(Freds);
-            Write(Freds);
-            Console.ReadLine();
-            TestWithdraw(Freds);
-            Write(Freds);
+                    case 1:
+                        //Write(Bank);
+                        Write(b1);
+                        Write(b2);
+                        Console.ReadLine();
+                        break;
+                    case 2:
+                        //TestDeposit(Bank);
+                        Console.WriteLine("Выберите счет для пополнения: ");
+                        Console.Write("1. ");
+                        Write(b1);
+                        Console.Write("2. ");
+                        Write(b2);
+                        int choice2 = ReadClass.ReadValueWithCondition<int>(int.TryParse, x => x >= 0 && x <= 2, "Нет такого счета. Попробуйте снова: ");
+                        if(choice2 == 1)
+                        {
+                            TestDeposit(b1);
+                        } else if(choice2 == 2)
+                        {
+                            TestDeposit(b2);
 
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        break;
+                    case 3:
+                        Console.WriteLine("Выберите счет для снятия: ");
+                        Console.Write("1. ");
+                        Write(b1);
+                        Console.Write("2. ");
+                        Write(b2);
+                        int choice3 = ReadClass.ReadValueWithCondition<int>(int.TryParse, x => x >= 0 && x <= 2, "Нет такого счета. Попробуйте снова: ");
+                        if (choice3 == 1)
+                        {
+                            TestWithdraw(b1);
+                        }
+                        else if (choice3 == 2)
+                        {
+                            TestWithdraw(b2);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        break;
+                    case 4:
+
+                        break;
+                }
+            }
+
+            //Write(Berts);
+            //TestDeposit(Berts);
+            //Write(Berts);
+            //TestWithdraw(Berts);
+            //Write(Berts);
+
+
+            //Write(Freds);
+            //TestDeposit(Freds);
+            //Write(Freds);
+
+            //TestWithdraw(Freds);
+            //Write(Freds);
+            //Berts.TransferFrom(Freds, 100); 
         }
 
         static BankAccount NewBankAccount()
@@ -48,9 +122,11 @@ namespace Lab5Maksim
 
         static void Write(BankAccount acc) 
         {
-            Console.WriteLine("Account number is {0}", acc.Number());
-            Console.WriteLine("Account balance is {0}", acc.Balance());
-            Console.WriteLine("Account type is {0}", acc.Type());
+            Console.WriteLine("======================");
+            Console.WriteLine($"Номер аккаунта {acc.Number()}");
+            Console.WriteLine($"Баланc {acc.Balance()}");
+            Console.WriteLine($"Тип аккаунта {acc.Type()}");
+
         }
 
         public static void TestDeposit(BankAccount acc)
@@ -65,6 +141,7 @@ namespace Lab5Maksim
             if (!acc.Withdraw(amount))
             {
                 Console.WriteLine("Недостаточно средств.");
+                Console.ReadLine();
             }
         }
     }

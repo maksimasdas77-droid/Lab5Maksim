@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Lab5Maksim.Test2</StartupObject>
+    <StartupObject>Lab5Maksim.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
