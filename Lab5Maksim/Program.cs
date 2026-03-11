@@ -96,7 +96,13 @@ namespace Lab5Maksim
                         int mount = ReadClass.ReadValue<int>("Введите сумму для переброски: ", int.TryParse);
                         if (choice4 == 1)
                         {
+                            Console.WriteLine("До трансфера");
+                            Console.WriteLine("{0} {1} {2}", b1.Type(), b1.Number(), b1.Balance());
+                            Console.WriteLine("{0} {1} {2}", b2.Type(), b2.Number(), b2.Balance());
                             b1.TransferFrom(b2, mount);
+                            Console.WriteLine("После трансфера");
+                            Console.WriteLine("{0} {1} {2}", b1.Type(), b1.Number(), b1.Balance());
+                            Console.WriteLine("{0} {1} {2}", b2.Type(), b2.Number(), b2.Balance());
                         }
                         else if (choice4 == 2)
                         {
@@ -106,6 +112,7 @@ namespace Lab5Maksim
                         {
                             break;
                         }
+
                         Console.ReadLine();
                         break;
                 }
