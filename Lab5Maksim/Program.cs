@@ -86,27 +86,31 @@ namespace Lab5Maksim
                         }
                         break;
                     case 4:
-
-                        
                         Console.Write("1. ");
                         Write(b1);
                         Console.Write("2. ");
                         Write(b2);
-                        int choice4 = ReadClass.ReadValueWithCondition<int>("Введите номер счета с которого вы перевести деньги на другой: ", int.TryParse, x => x >= 0 && x <= 2, "Нет такого счета. Попробуйте снова: ");
+                        int choice4 = ReadClass.ReadValueWithCondition<int>("Введите номер счета на который вы хотите перевести деньги с другого: ", int.TryParse, x => x >= 0 && x <= 2, "Нет такого счета. Попробуйте снова: ");
                         int mount = ReadClass.ReadValue<int>("Введите сумму для переброски: ", int.TryParse);
                         if (choice4 == 1)
                         {
                             Console.WriteLine("До трансфера");
-                            Console.WriteLine("{0} {1} {2}", b1.Type(), b1.Number(), b1.Balance());
-                            Console.WriteLine("{0} {1} {2}", b2.Type(), b2.Number(), b2.Balance());
+                            Console.WriteLine("{0} {1} {2}", b1.Type(), (b1.Number() + 1), b1.Balance());
+                            Console.WriteLine("{0} {1} {2}", b2.Type(), (b2.Number() + 1), b2.Balance());
                             b1.TransferFrom(b2, mount);
                             Console.WriteLine("После трансфера");
-                            Console.WriteLine("{0} {1} {2}", b1.Type(), b1.Number(), b1.Balance());
-                            Console.WriteLine("{0} {1} {2}", b2.Type(), b2.Number(), b2.Balance());
+                            Console.WriteLine("{0} {1} {2}", b1.Type(), (b1.Number() + 1), b1.Balance());
+                            Console.WriteLine("{0} {1} {2}", b2.Type(), (b2.Number() + 1), b2.Balance());
                         }
                         else if (choice4 == 2)
                         {
-                            b2.TransferFrom(b1, mount); ;
+                            Console.WriteLine("До трансфера");
+                            Console.WriteLine("{0} {1} {2}", b1.Type(), (b1.Number() + 1), b1.Balance());
+                            Console.WriteLine("{0} {1} {2}", b2.Type(), (b2.Number() + 1), b2.Balance());
+                            b2.TransferFrom(b1, mount);
+                            Console.WriteLine("После трансфера");
+                            Console.WriteLine("{0} {1} {2}", b1.Type(), (b1.Number() + 1), b1.Balance());
+                            Console.WriteLine("{0} {1} {2}", b2.Type(), (b2.Number() + 1), b2.Balance());
                         }
                         else
                         {
@@ -117,21 +121,6 @@ namespace Lab5Maksim
                         break;
                 }
             }
-
-            //Write(Berts);
-            //TestDeposit(Berts);
-            //Write(Berts);
-            //TestWithdraw(Berts);
-            //Write(Berts);
-
-
-            //Write(Freds);
-            //TestDeposit(Freds);
-            //Write(Freds);
-
-            //TestWithdraw(Freds);
-            //Write(Freds);
-            //Berts.TransferFrom(Freds, 100); 
         }
 
         static BankAccount NewBankAccount()
@@ -150,7 +139,7 @@ namespace Lab5Maksim
         static void Write(BankAccount acc) 
         {
             Console.WriteLine("======================");
-            Console.WriteLine($"Номер аккаунта {acc.Number()}");
+            Console.WriteLine($"Номер аккаунта {acc.Number() +1}");
             Console.WriteLine($"Баланc {acc.Balance()}");
             Console.WriteLine($"Тип аккаунта {acc.Type()}");
 
